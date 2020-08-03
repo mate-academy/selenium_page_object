@@ -93,3 +93,5 @@ def test_two_add_book_to_profile_flow(driver):
 
     validate_and_remove_book(driver, BOOK_NAME_1)
     validate_and_remove_book(driver, BOOK_NAME_2)
+
+
