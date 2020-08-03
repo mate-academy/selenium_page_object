@@ -1,5 +1,4 @@
-from test_simple import LoginPage, BookPage
-
+from page import LoginPage, BookPage
 import pytest
 
 from selenium import webdriver
@@ -15,9 +14,7 @@ BOOK_NAME_2 = 'Learning JavaScript Design Patterns'
 @pytest.fixture()
 def driver():
     driver = webdriver.Chrome(executable_path="c:/selenium/chromedriver.exe")
-
     yield driver
-
     driver.quit()
 
 def test_add_book_to_profile_flow(driver):
@@ -26,7 +23,7 @@ def test_add_book_to_profile_flow(driver):
     login_page.login_as_registered_user(USER)
     book_page.add_book_to_profile(BOOK_NAME_1)
 
-    driver.get('https://demoqa.com/profile')
+    book_page.open('https://demoqa.com/profile')
 
     book_page.validate_and_remove_book(BOOK_NAME_1)
 
@@ -37,7 +34,7 @@ def test_two_add_book_to_profile_flow(driver):
     book_page.add_book_to_profile(BOOK_NAME_1)
     book_page.add_book_to_profile(BOOK_NAME_2)
 
-    driver.get('https://demoqa.com/profile')
+    book_page.open('https://demoqa.com/profile')
 
     book_page.validate_and_remove_book(BOOK_NAME_1)
     book_page.validate_and_remove_book(BOOK_NAME_2)
